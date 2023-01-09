@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,20 @@ Route::get('/', function () {
 });
 
 
+//Auth::routes();
 
+Route::auth();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'App\Http\Controllers\HomeController@index');
+
+Route::get('/admin', function()
+{
+  return view('admin.index');
+});
+
+Route::resource('/admin/users', 'App\Http\Controllers\AdminUsersController');
+
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 
 
 
@@ -53,6 +67,7 @@ Route::get('/', function () {
  // 2. php artisan migrate
  // 3. composer require laravel/ui
  // 4. php artisan ui vue --auth
+ // 5. php artisan make:model Role -m
 
 
 
@@ -61,4 +76,27 @@ Route::get('/', function () {
  //1. git init
  //2. git status
  //3. git add .
- //3 
+ //4. git config --global user.email "you@example.com"
+ //5. git config --global user.name "Your Name"
+ //6. git commit -m "......."
+ //7. git log
+
+
+
+
+ //find user in tinker.
+        // 1.  $user = App\Models\User::find(1)
+              //$user->role
+ //Create user in tinker
+        //$user = new App\Models\User();
+        //$user->password = Hash::make('the-password-of-choice');
+        //$user->email = 'the-email@example.com';
+        //$user->name = 'My Name';
+        //$user->save();
+ //Create user in tinker in one line
+        //$user = new App\Models\User();
+        //App\Models\User::create(['name' => 'Tasnim Rima','email' => 'tasnim@mail.com','password' => Hash::make('123456789')]);
+
+ //Delete specific user from database using tinker
+        //$user = App\Models\User::find(3)
+        //$user->forceDelete(3)
