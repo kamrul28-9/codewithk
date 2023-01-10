@@ -8,6 +8,7 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>PHOTO</th>
           <th>NAME</th>
           <th>E-MAIL</th>
           <th>ROLE</th>
@@ -23,6 +24,7 @@
           <?php foreach ($users as $user): ?>
               <tr>
                 <td>{{$user->id}}</td>
+                <td> <img height="50" src="{{$user->photo ? $user->photo->file : 'No User Photo'}}" alt="No User Photo"> </td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name ?? 'User Has No Role'}}</td>
