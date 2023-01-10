@@ -47,6 +47,28 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Models\Photo');
     }
+
+
+    public function getpasswordAttribute($password)
+    {
+
+      if (!empty($password)) {
+          $this-> attributes['password'] = bcrypt($password);
+      }
+
+    }
+
+    //for Admin middleware security
+    public function isAdmin(){
+
+      if($this->role->name == "administrator") { // make sure role is assigned in above function
+        return true;
+      }
+      return false;
+
+    }
+
+
     /**
      * The attributes that should be cast.
      *

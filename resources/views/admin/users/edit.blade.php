@@ -10,7 +10,7 @@
       </div>
 
       <div class="col-lg-10">
-        {!! Form::model($user, ['method' => 'PATCH', 'action' => ['App\Http\Controllers\AdminUsersController@update', $user->id,], 'files' => 'true']) !!}
+        {!! Form::model($user, ['method' => 'PATCH', 'action' => ['App\Http\Controllers\AdminUsersController@update', $user->id], 'files' => 'true']) !!}
 
         {!! csrf_field() !!}
               <div class="form-group">
@@ -41,6 +41,16 @@
                 {!! Form::submit('Update User', ['class' => 'btn btn-primary']) !!}
               </div>
         {!! Form::close() !!}
+
+
+        {!! Form::open(['method'=>'DELETE', 'action'=> ['App\Http\Controllers\AdminUsersController@destroy', $user->id]]) !!}
+        {!! csrf_field() !!}
+              <div class="form-group">
+                  {!! Form::submit('Delete User', ['class' => 'btn btn-danger']) !!}
+              </div>
+        {!! Form::close() !!}
+
+
       </div>
      </div>
 
