@@ -42,6 +42,11 @@ class User extends Authenticatable
       return $this->belongsTo('App\Models\Role');
     }
 
+    //Relation setup: Photo for the users
+    public function photo()
+    {
+      return $this->belongsTo('App\Models\Photo');
+    }
     /**
      * The attributes that should be cast.
      *
