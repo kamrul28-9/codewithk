@@ -3,9 +3,9 @@
 @section('content')
 
 
-  <h1>Create User</h1>
+  <h1>Create Users</h1>
 
-  {!! Form::open(['method' => 'POST', 'action' => 'App\Http\Controllers\AdminUsersController@store', 'files' => 'true']) !!}
+  {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\AdminUsersController@store'],'files'=>true]) !!}
   {!! csrf_field() !!}
     <div class="container" style="">
         <div class="form-group">

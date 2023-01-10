@@ -24,8 +24,9 @@
           <?php foreach ($users as $user): ?>
               <tr>
                 <td>{{$user->id}}</td>
-                <td> <img height="50" src="{{$user->photo ? $user->photo->file : 'No User Photo'}}" alt="No User Photo"> </td>
-                <td>{{$user->name}}</td>
+                <!-- accessor setup in Photo.php -->
+                <td> <img height="70" src="{{$user->photo ? $user->photo->file : 'http://place-hold.it/300'}}" alt="No User Photo"> </td>
+                 <td><a href="/admin/users/{{$user->id}}/edit">{{$user->name}}</a></td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name ?? 'User Has No Role'}}</td>
                 <td>{{$user->is_active == 1 ? 'Active': 'Not Active'}}</td>
