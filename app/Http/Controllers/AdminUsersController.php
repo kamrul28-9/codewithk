@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -53,6 +54,10 @@ class AdminUsersController extends Controller
         $input['password'] = bcrypt($request->password);
       }
 
+
+      //flash messege for update feild.
+      Session::flash('created_user', 'CONGRATULATIONS! NEW USER HAS BEEN CREATED.'); // Use Session class on top.
+
               //return view('admin.users.create');
             // return $request->all();
             //User::create($request->all());
@@ -94,7 +99,7 @@ class AdminUsersController extends Controller
     {
         $user = User::findOrFail($id);
           $roles = Role::pluck('name','id')->all();
-
+          
           return view('admin.users.edit', compact('user','roles'));
     }
 
@@ -110,6 +115,8 @@ class AdminUsersController extends Controller
          //return $request->all();
          $user = User::findOrFail($id);
 
+         //flash messege for update feild.
+         Session::flash('upadated_user', 'HOORRAYH!! THE USER HAS BEEN UPDATED.'); // Use Session class on top.
 
          //modifing for password field
          if (trim($request->password) == '') {
@@ -146,7 +153,17 @@ class AdminUsersController extends Controller
     {
 
         //return('User Destroyed'); //for checkout
-        User::findOrFail($id)->delete();
-         return redirect('/admin/users');
+
+        //find user.
+        $user = User::findOrFail($id);
+
+        //delete user photo from database with deleting user.
+        //unlink(public_path() . "/images/" .  $user->photo->file);
+        unlink(public_path() . $user->photo->file); // here don't need "/images/", beucause we allready put path accessor in Photo.php.
+        $user->delete();
+
+          // flash messege for delete user.
+          Session::flash('deleted_user', 'DELETED!! THE USER HAS BEEN DELETED.'); // Use Session class on top.
+          return redirect('/admin/users');
     }
 }

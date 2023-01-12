@@ -1,1 +1,7 @@
-<h1>Upss, This is 404 page.</h1>
+@extends('layouts.app')
+
+@section('content')
+
+  <h1 class="text-center">Opps, No Page Available</h1>
+
+@stop

@@ -20,9 +20,9 @@ Route::get('/', function () {
 });
 
 
-//Auth::routes();
+Auth::routes();
 
-Route::auth();
+//Route::auth();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', 'App\Http\Controllers\HomeController@index');
 
@@ -36,6 +36,7 @@ Route::group(['middleware' => 'admin'], function()
 {
 
   Route::resource('/admin/users', 'App\Http\Controllers\AdminUsersController');
+  Route::resource('/admin/posts', 'App\Http\Controllers\AdminPostsController');
 
 });
 

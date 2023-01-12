@@ -61,12 +61,19 @@ class User extends Authenticatable
     //for Admin middleware security
     public function isAdmin(){
 
-      if($this->role->name == "administrator") { // make sure role is assigned in above function
+      if($this->role->name == "administrator" && $this->is_active == 1) { // make sure role is assigned in above function
         return true;
       }
       return false;
 
     }
+
+    //Relationship setup for the user.
+    public function posts()
+    {
+      return $this->hasMany('App\Models\Post');
+    }
+
 
 
     /**
