@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Photo;
+use App\Models\Category;
 use App\Http\Requests\PostsCreateRequest;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,11 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+
+      //create method to pass in the categories
+      $categories = Category::pluck('name', 'id')->all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
