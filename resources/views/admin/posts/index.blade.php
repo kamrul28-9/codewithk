@@ -26,10 +26,10 @@
               <tr>
                 <td>{{$post->id}}</td>
                 <td> <img height="70" src="{{$post->photo ? $post->photo->file : 'http://place-hold.it/300'}}" alt="No User Photo"> </td>
-                <td>{{$post->user->name}}</td>
+                <td><a href="/admin/posts/{{$post->id}}/edit">{{$post->user->name}}</a></td>
                 <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->body}}</td>
+                <td>{{\Illuminate\Support\Str::limit($post->body, 15)}}</td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
               </tr>

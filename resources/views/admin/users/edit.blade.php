@@ -48,9 +48,9 @@
 
                 <div class="form-group">
                     <!-- delete user form -->
-                    {!! Form::open(['method'=>'DELETE', 'action'=> ['App\Http\Controllers\AdminUsersController@destroy', $user->id]]) !!}
+                    {!! Form::open(['method'=>'DELETE', 'action'=> ['App\Http\Controllers\AdminUsersController@destroy', $post->id]]) !!}
                     {!! csrf_field() !!}
-                              {!! Form::submit('Delete User', ['class' => 'btn btn-danger pull-right col-sm-5']) !!}
+                              {!! Form::submit('Delete Post', ['class' => 'btn btn-danger pull-right col-sm-5']) !!}
                     {!! Form::close() !!}
                 </div>
         </div>

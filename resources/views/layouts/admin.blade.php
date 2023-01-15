@@ -84,12 +84,7 @@
                 <!-- /.dropdown-user -->
             </li>
             <!-- /.dropdown -->
-
-
         </ul>
-
-
-
 
 
 

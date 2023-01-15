@@ -5,9 +5,10 @@
     <h1>create page</h1>
 
     <div class="row">
-        {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\AdminPostsController@store'],'files'=>true]) !!}
+        {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\AdminPostsController@store'],'files'=>'true']) !!}
         {!! csrf_field() !!}
-          <div class="container" style="">
+
+          <div class="container">
               <div class="form-group">
                   {!! Form::label('title', 'Title: ') !!}
                   {!! Form::text('title', null, ['class' => 'form-control']) !!}
@@ -26,7 +27,7 @@
               </div>
 
               <div class="form-group">
-                {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Create Post', ['class' => 'btn btn-primary']) !!}
               </div>
           </div>
         {!! Form::close() !!}
