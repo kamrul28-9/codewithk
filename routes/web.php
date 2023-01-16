@@ -16,6 +16,7 @@ use App\Models\Role;
 */
 
 Route::get('/', function () {
+    Auth::logout();
     return view('welcome');
 });
 
@@ -23,8 +24,8 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::auth();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', 'App\Http\Controllers\HomeController@index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', 'App\Http\Controllers\HomeController@index');
 
 Route::get('/admin', function()
 {
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'admin'], function()
 
   Route::resource('/admin/users', 'App\Http\Controllers\AdminUsersController');
   Route::resource('/admin/posts', 'App\Http\Controllers\AdminPostsController');
+  Route::resource('/admin/categories', 'App\Http\Controllers\AdminCategoriesController');
 
 });
 

@@ -28,10 +28,9 @@
           <th>UPDATED</th>
         </tr>
       </thead>
+
       <tbody>
-
         <?php if ($users): ?>
-
           <?php foreach ($users as $user): ?>
               <tr>
                 <td>{{$user->id}}</td>

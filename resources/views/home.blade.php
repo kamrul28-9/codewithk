@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    You are logged in
+                    You are logged in {{ $user->name }}
                     <!-- this user come from index function of HomController -->
                 </div>
             </div>

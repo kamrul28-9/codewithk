@@ -21,6 +21,10 @@ return new class extends Migration
            $table->string('title');
            $table->text('body');
            $table->timestamps();
+
+           //ban a user with his/her post permanently.
+           $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+           // here user_id from the post, id from users table.
         });
     }
 

@@ -22,7 +22,7 @@ class Post extends Model
 //Relationship for the user
     public function user()
     {
-      return $this->belongsTo('App\Models\User');
+      return $this->belongsTo('App\Models\User', 'name');
     }
 
 //Relationship for the photo
