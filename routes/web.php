@@ -39,6 +39,10 @@ Route::group(['middleware' => 'admin'], function()
   Route::resource('/admin/users', 'App\Http\Controllers\AdminUsersController');
   Route::resource('/admin/posts', 'App\Http\Controllers\AdminPostsController');
   Route::resource('/admin/categories', 'App\Http\Controllers\AdminCategoriesController');
+  Route::resource('/admin/media', 'App\Http\Controllers\AdminMediasController');
+
+  //Route::get('/admin/media/upoad', ['as' => 'admin.media.upload', 'uses' => 'App\Http\Controllers\AdminMediasController@store']);
+
 
 });
 

@@ -13,39 +13,37 @@
             <div class="form-group">
               {!! Form::submit('Create Category', ['class' => 'btn btn-primary']) !!}
             </div>
-
-            {!! Form::close() !!}
+      {!! Form::close() !!}
     </div>
 
+    <div class="col-sm-6">
+      @if($categories)
 
-  <div class="col-sm-6">
-    @if($categories)
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>CREATED</th>
-          <th>UPDATED</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        @foreach($categories as $category)
+      <table class="table table-hover">
+        <thead>
           <tr>
-            <td>{{$category->id}}</td>
-            <td><a href="/admin/categories/{{$category->id}}/edit">{{$category->name}}</a></td>
-            <td>{{$category->created_at ? $category->created_at->diffForHumans() : "No Date Fixed"}}</td>
-            <td>{{$category->updated_at ? $category->updated_at->diffForHumans() : "Not Update Yet"}}</td>
-          <tr>
-        @endforeach
-      </tbody>
+            <th>ID</th>
+            <th>Name</th>
+            <th>CREATED</th>
+            <th>UPDATED</th>
+          </tr>
+        </thead>
 
-    </table>
+        <tbody>
+          @foreach($categories as $category)
+            <tr>
+              <td>{{$category->id}}</td>
+              <td><a href="/admin/categories/{{$category->id}}/edit">{{$category->name}}</a></td>
+              <td>{{$category->created_at ? $category->created_at->diffForHumans() : "No Date Fixed"}}</td>
+              <td>{{$category->updated_at ? $category->updated_at->diffForHumans() : "Not Update Yet"}}</td>
+            <tr>
+          @endforeach
+        </tbody>
 
-    @endif
-  </div>
+      </table>
+
+      @endif
+    </div>
 
 @endsection
 
