@@ -4,7 +4,7 @@
 
 <h3>Comments Panel</h3>
 
-  @if(count($comments) > 0)
+    @if(count($comments) > 0)
     <table class="table table-striped">
         <thead>
           <tr>
@@ -18,7 +18,8 @@
         </thead>
 
         <tbody>
-          @foreach ($comments as $comment)
+          @foreach($comments as $comment)
+
             <tr>
               <td>{{$comment->id}}</td>
 
@@ -50,6 +51,7 @@
               </td>
 
               <td>
+
                   {!! Form::open(['method'=>'DELETE', 'action'=> ['App\Http\Controllers\PostCommentsController@destroy', $comment->id]]) !!}
                     <input type="hidden" name="is_active" value="1">
                       <div class="form-group">
@@ -58,19 +60,17 @@
                   {!! Form::close() !!}
 
               </td>
-
-
-
             </tr>
           @endforeach
         </tbody>
 
       </table>
+      @else
 
-        @else
+
         <h1 class="text-center"> No Comments</h1>
-
   @endif
+
 @endsection
 
 

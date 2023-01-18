@@ -16,7 +16,6 @@ class Post extends Model
         'photo_id',
         'title',
         'body',
-        
     ];
 
 
@@ -33,15 +32,17 @@ class Post extends Model
     }
 
     //Relationship for the Category
-    public function category()
-    {
-      return $this->belongsTo('App\Models\Category');
-    }
+        public function category()
+        {
+          return $this->belongsTo('App\Models\Category');
+        }
 
-    //Relationship for the comments
-    public function comments()
-    {
-      return $this->hasMany('App\Models\Post');
+        public function comments(){
+
+
+        return $this->hasMany('App\Models\Comment');
+
+
     }
 
 
