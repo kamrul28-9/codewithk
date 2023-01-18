@@ -9,12 +9,12 @@
         <tr>
           <th>ID</th>
           <th>PHOTO</th>
-          <th>Owner</th>
+          <th>OWNER</th>
           <th>CATEGORY</th>
           <th>TITLE</th>
           <th>BODY</th>
-          <th>View</th>
-          <th>View Comment</th>
+          <th>POST</th>
+          <th>COMMENT</th>
           <th>CREATED</th>
           <th>UPDATED</th>
 

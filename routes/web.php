@@ -51,6 +51,24 @@ Route::group(['middleware' => 'admin'], function()
 });
 
 
+//create a group just for user are logged in instead, and
+//create a custom method just to send the request instead fo giving access for all this.
+Route::group(['middleware' => 'auth'], function()
+{
+  Route::post('/comment/reply', 'App\Http\Controllers\CommentRepliesController@createReply');
+
+});
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
 

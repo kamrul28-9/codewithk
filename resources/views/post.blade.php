@@ -33,61 +33,80 @@
         <!-- Comments section-->
         <section class="mb-5">
             <div class="card bg-light">
-                  @if(Session::has('comment_message'))
-                      {{session('comment_message')}}
-                  @endif
+
                 <div class="card-body">
                     <!-- Comment form: Only logged user can see this and leave a comment, for more: see PostCommentsController@store -->
+                  @if(Auth::check())
                     <div class="well">
+
+                      @if(Session::has('comment_message'))
+                          {{session('comment_message')}}
+                      @endif
                       <h4>Leave your comment here</h4>
 
-                      {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\PostCommentsController@store']]) !!}
-                      {!! csrf_field() !!}
+                          {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\PostCommentsController@store']]) !!}
+                          {!! csrf_field() !!}
+                          <input type="hidden" name="post_id" value="{{$post->id}}">
+                          <div class="form-group">
+                              {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'join the discusion..']) !!}
+                          </div>
+                          <div class="form-group">
+                            {!! Form::submit('Submit Comment', ['class' => 'btn btn-primary']) !!}
+                          </div>
+                          {!! Form::close() !!}
 
-                        <input type="hidden" name="post_id" value="{{$post->id}}">
-                      <div class="form-group">
-                          {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'join the discusion..']) !!}
                       </div>
-                      <div class="form-group">
-                        {!! Form::submit('Submit Comment', ['class' => 'btn btn-primary']) !!}
-                      </div>
-                      {!! Form::close() !!}
+                    @endif
 
-                    </div>
-
-                    <!-- Comment with nested comments-->
-                    <div class="d-flex mb-4">
-                        <!-- Parent comment-->
-                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                        <div class="ms-3">
-                            <div class="fw-bold">Commenter Name</div>
-                            If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                            <!-- Child comment 1-->
-                            <div class="d-flex mt-4">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                </div>
-                            </div>
-                            <!-- Child comment 2-->
-                            <div class="d-flex mt-4">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    When you put money directly to a problem, it makes a good headline.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single comment-->
+                    <!-- Single Parent comments-->
+                    @if(count($comments) > 0)
+                     @foreach($comments as $comment)
                     <div class="d-flex">
-                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                        <div class="ms-3">
-                            <div class="fw-bold">Commenter Name</div>
-                            When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                        <div class="flex-shrink-0">
+                          <img class="rounded-circle" height="50" width="50" src="{{$comment->photo}}" alt="..." />
                         </div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold">{{$comment->author}}
+                                <small>{{$comment->created_at->addHours(6)->toDayDateTimeString()}}</small>
+                            </h6>
+                            <p>{{$comment->body}}</p>
+                      <!-- End Single Parent comments-->
+
+
+                              <!-- nested comments-->
+                        @if(count($comment->replies) > 0)
+                          @foreach($comment->replies as $reply)
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0"><img class="rounded-circle" height="50" width="50" src="{{$reply->photo}}" alt="..." /></div>
+                                <div class="ms-3">
+                                    <h6 class="fw-bold">{{$reply->author}}
+                                        <small>{{$reply->created_at->addHours(6)->toDayDateTimeString()}}</small>
+                                    </h6>
+                                    <p>{{$reply->body}}</p>
+                                </div>
+                            </div>
+
+                            <!-- From for nested comments-->
+                            {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\CommentRepliesController@createReply']]) !!}
+                            {!! csrf_field() !!}
+
+                            <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                            <div class="form-group">
+                                {!! Form::textarea('body', null, ['class' => 'form-control', 'rows' => 1, 'placeholder' => 'reply here..']) !!}
+                            </div>
+                            <div class="form-group">
+                              {!! Form::submit('Submit Reply', ['class' => 'btn btn-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+
+                          @endforeach
+                        @endif
+                            <!--End nested comments-->
+                      </div>
                     </div>
+                     @endforeach
+                    @endif
+
                 </div>
             </div>
         </section>

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
+use App\Models\CommentReply;
 
 class CommentRepliesController extends Controller
 {
@@ -38,6 +41,30 @@ class CommentRepliesController extends Controller
     }
 
     /**
+     * Show the form for creating a new custom resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    //custom method:
+    public function createReply(Request $request)
+    {
+
+        //return "its works"; // by clicking reply button
+
+        $user = Auth::user();
+         $data = [
+             'comment_id' => $request->comment_id,
+             'author'=> $user->name,
+             'email' =>$user->email,
+             'photo'=>$user->photo->file,
+             'body'=>$request->body
+         ];
+         CommentReply::create($data);
+         $request->session()->flash('reply_message','Your reply has been submitted and is waiting moderation');
+         return redirect()->back();
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -45,7 +72,11 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
+
+      $comment = Comment::findOrFail($id);
+      $replies = $comment->replies;
+
+      return view('admin.comments.replies.show', compact('replies'));
     }
 
     /**

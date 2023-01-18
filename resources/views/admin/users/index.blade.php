@@ -40,8 +40,8 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role ? $user->role->name : 'User Has No Role'}}</td>
                 <td>{{$user->is_active == 1 ? 'Active': 'Not Active'}}</td>
-                <td>{{$user->created_at->diffForHumans()}}</td>
-                <td>{{$user->updated_at->diffForHumans()}}</td>
+                <td>{{$user->created_at->toDayDateTimeString()}}</td>
+                <td>{{$user->updated_at->toDayDateTimeString()}}</td>
               </tr>
           <?php endforeach; ?>
 

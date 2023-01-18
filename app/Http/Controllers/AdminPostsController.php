@@ -143,7 +143,8 @@ class AdminPostsController extends Controller
 
       $post = Post::findOrFail($id);
       //return $post; //for checkout
-      return view('post', compact('post'));
+      $comments = $post->comments()->whereIsActive(1)->get(); // passing the active comment for Post page. for using comments.
+      return view('post', compact('post', 'comments'));
 
     }
 }

@@ -9,11 +9,12 @@ class CommentReply extends Model
 {
     use HasFactory;
 
-    //mass assignment.
+    //mass assignment for controller
         protected $fillable = [
             'comment_id',
             'author',
             'email',
+            'photo',
             'body',
             'is_active',
         ];
