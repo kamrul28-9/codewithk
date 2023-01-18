@@ -16,13 +16,14 @@ class Post extends Model
         'photo_id',
         'title',
         'body',
+        
     ];
 
 
 //Relationship for the user
     public function user()
     {
-      return $this->belongsTo('App\Models\User', 'name');
+      return $this->belongsTo('App\Models\User');
     }
 
 //Relationship for the photo
@@ -32,10 +33,16 @@ class Post extends Model
     }
 
     //Relationship for the Category
-        public function category()
-        {
-          return $this->belongsTo('App\Models\Category');
-        }
+    public function category()
+    {
+      return $this->belongsTo('App\Models\Category');
+    }
+
+    //Relationship for the comments
+    public function comments()
+    {
+      return $this->hasMany('App\Models\Post');
+    }
 
 
 

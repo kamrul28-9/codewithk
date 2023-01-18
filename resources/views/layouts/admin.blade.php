@@ -19,6 +19,8 @@
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 
 
 
@@ -150,6 +152,9 @@
                             <li>
                                 <a href="{{url('admin/posts/create')}}">Create Post</a>
                             </li>
+                            <li>
+                                <a href="{{url('admin/comments')}}">All Comments</a>
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -163,9 +168,9 @@
                                 <a href="{{url('admin/categories')}}">All Categories</a>
                             </li>
 
-                            <!-- <li>
+                            <li>
                                 <a href="{{url('admin/categories/create')}}">Create Category</a>
-                            </li> -->
+                            </li>
 
                         </ul>
                         <!-- /.nav-second-level -->
@@ -187,9 +192,15 @@
                         <!-- /.nav-second-level -->
                     </li>
 
-
-
-
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Post<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="">Single Post</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
 
 
 

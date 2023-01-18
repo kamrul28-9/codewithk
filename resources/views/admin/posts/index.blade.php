@@ -26,7 +26,7 @@
               <tr>
                 <td>{{$post->id}}</td>
                 <td> <img height="70" src="{{$post->photo ? $post->photo->file : 'http://place-hold.it/300'}}" alt="No User Photo"> </td>
-                <td><a href="/admin/posts/{{$post->id}}/edit">{{$post->user->name}}</a></td>
+                <td><a href="/admin/posts/{{$post->id}}/edit">{{ $post->user ? $post->user->name : ''}}</a></td>
                 <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
                 <td>{{$post->title}}</td>
                 <td>{{\Illuminate\Support\Str::limit($post->body, 15)}}</td>

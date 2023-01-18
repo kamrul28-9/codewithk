@@ -16,7 +16,7 @@ use App\Models\Role;
 */
 
 Route::get('/', function () {
-    Auth::logout();
+    // Auth::logout();
     return view('welcome');
 });
 
@@ -26,6 +26,8 @@ Auth::routes();
 //Route::auth();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/home', 'App\Http\Controllers\HomeController@index');
+
+Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'App\Http\Controllers\AdminPostsController@post' ]);
 
 Route::get('/admin', function()
 {
@@ -43,6 +45,8 @@ Route::group(['middleware' => 'admin'], function()
 
   //Route::get('/admin/media/upoad', ['as' => 'admin.media.upload', 'uses' => 'App\Http\Controllers\AdminMediasController@store']);
 
+  Route::resource('/admin/comments', 'App\Http\Controllers\PostCommentsController');
+  Route::resource('/admin/comment/replies', 'App\Http\Controllers\CommentRepliesController');
 
 });
 

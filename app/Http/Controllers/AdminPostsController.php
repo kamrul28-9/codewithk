@@ -21,8 +21,10 @@ class AdminPostsController extends Controller
     {
 
       $posts = Post::all();
+      //$posts = User::all();
 
       return view('admin.posts.index', compact('posts'));
+        //return $posts;
     }
 
     /**
@@ -126,12 +128,22 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-      //return('Post Destroyed'); //for checkou
+      //return('Post Destroyed'); //for checkout
 
       $post = Post::findOrFail($id);
 
       unlink(public_path() . $post->photo->file);
 
         return redirect('/admin/posts');
+    }
+
+
+    public function post($id)
+    {
+      
+      $post = Post::findOrFail($id);
+      //return $post; //for checkout
+      return view('post', compact('post'));
+
     }
 }

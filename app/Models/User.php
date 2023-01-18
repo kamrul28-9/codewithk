@@ -49,14 +49,14 @@ class User extends Authenticatable
     }
 
 
-    public function getpasswordAttribute($password)
-    {
+    // public function getpasswordAttribute($password)
+    // {
+    //
+    //   if (!empty($password)) {
+    //       $this-> attributes['password'] = bcrypt($password);
+    //   }
+    //}
 
-      if (!empty($password)) {
-          $this-> attributes['password'] = bcrypt($password);
-      }
-
-    }
 
     //for Admin middleware security
     public function isAdmin(){
