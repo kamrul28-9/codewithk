@@ -3,11 +3,11 @@
 @section('content')
 
 
-  <h1>Create Users</h1>
-    <div class="row">
-        {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\AdminUsersController@store'],'files'=>true]) !!}
-        {!! csrf_field() !!}
-          <div class="container" style="">
+  <h1 class="page-header">Create User</h1>
+      <div class="col-md-10 mb-5">
+          <div class="col-md-offset-3">
+              {!! Form::open(['method'=>'POST', 'action'=> ['App\Http\Controllers\AdminUsersController@store'],'files'=>true]) !!}
+              {!! csrf_field() !!}
               <div class="form-group">
                   {!! Form::label('name', 'User Name') !!}
                   {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -35,8 +35,8 @@
               <div class="form-group">
                 {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
               </div>
-          </div>
               {!! Form::close() !!}
+          </div>
         </div>
 
         <div class="row">

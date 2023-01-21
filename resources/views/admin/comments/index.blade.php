@@ -25,6 +25,7 @@
               <td>{{ $comment->body}}</td>
               <td><a href="/post/{{$comment->post->id}}">View Post</a></td>
               <td>{{$comment->post->title}}</td>
+              <td><a href="/admin/comment/replies/{{$comment->id}}">Replies</a></td>
               <td>{{$comment->created_at->addHours(6)->toDayDateTimeString()}}</td>
 
 

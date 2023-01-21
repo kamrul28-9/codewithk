@@ -20,8 +20,9 @@ class AdminPostsController extends Controller
     public function index()
     {
 
-      $posts = Post::all();
+      //$posts = Post::all();
       //$posts = User::all();
+      $posts = Post::orderBy('created_at', 'desc')->paginate(2);
 
       return view('admin.posts.index', compact('posts'));
         //return $posts;
@@ -138,10 +139,10 @@ class AdminPostsController extends Controller
     }
 
 
-    public function post($id)
+    public function post($slug)
     {
 
-      $post = Post::findOrFail($id);
+      $post = Post::findBySlugOrFail($slug);
       //return $post; //for checkout
       $comments = $post->comments()->whereIsActive(1)->get(); // passing the active comment for Post page. for using comments.
       return view('post', compact('post', 'comments'));

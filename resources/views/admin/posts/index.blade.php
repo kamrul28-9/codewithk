@@ -4,6 +4,7 @@
 
     <h3>Posts Panel</h2>
 
+
     <table class="table table-hover">
       <thead>
         <tr>
@@ -23,7 +24,7 @@
       <tbody>
 
         <?php if ($posts): ?>
-
+  @include('includes.tinyeditor')
           <?php foreach ($posts as $post): ?>
               <tr>
                 <td>{{$post->id}}</td>
@@ -32,7 +33,7 @@
                 <td>{{$post->category ? $post->category->name : "Uncategorized"}}</td>
                 <td>{{$post->title}}</td>
                 <td>{{\Illuminate\Support\Str::limit($post->body, 30)}}</td>
-                <td><a href="/post/{{$post->id}}">View Post</a></td>
+                <td><a href="/post/{{$post->slug}}">View Post</a></td>
                 <td><a href="/admin/comments/{{$post->id}}">View Comment</a></td>
                 <td>{{$post->created_at->diffForHumans()}}</td>
                 <td>{{$post->updated_at->diffForHumans()}}</td>
@@ -43,6 +44,13 @@
 
       </tbody>
     </table>
+
+    <!-- for paginations -->
+    <div class="row">
+           <div class="col-sm-6 col-sm-offset-5">
+              {{$posts->links()}}
+           </div>
+    </div>
 
 
 @stop

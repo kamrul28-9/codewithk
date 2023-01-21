@@ -15,6 +15,7 @@
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
 
@@ -51,51 +52,83 @@
       @yield('content')
 
                 </div>
-                <!-- Side widgets-->
-                <div class="col-lg-4">
-                    <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Search</div>
-                        <div class="card-body">
-                          <div class="input-group">
-                              <input type="text" class="form-control">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                      <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                  </span>
-                            </div>
-                <!-- /.input-group -->
 
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Categories</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
+                <!-- Side widgets-->
+                  <div class="col-lg-4">
+
+                        <!-- Search widget-->
+                        <div class="card mb-4" id="headingOne">
+                                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                  Search Button Bellow
+                                </button>
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                              <div class="card-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                          </button>
+                                        </span>
+                                  </div>
+                              </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Side widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
+                        <!--End Search widget-->
+                        <!-- Category widget-->
+                        <div class="card mb-4" id="headingTwo">
+                                <button class="btn btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  Category Items Bellow
+                                </button>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                              <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><a href="#!">Web Design</a></li>
+                                            <li><a href="#!">HTML</a></li>
+                                            <li><a href="#!">Freebies</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li><a href="#!">JavaScript</a></li>
+                                            <li><a href="#!">CSS</a></li>
+                                            <li><a href="#!">Tutorials</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <!--End Category widget-->
+
+                        <!-- button widget-->
+                        <div class="card mb-4">
+                          <div class="card-header" id="headingThree">
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Search Button Bellow
+                            </button>
+                          </div>
+
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                              <div class="card-body">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                          </button>
+                                        </span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <!--End button widget-->
+
+                  </div>
+                  <!--End Side widget-->
+
                 </div>
             </div>
         </div>
@@ -105,8 +138,17 @@
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
         <!-- Core theme JS-->
+        <script src="{{asset('js/libs.js')}}"></script>
 
+        <script src="{{ asset('assets/js/libs/styles.js') }}"></script>
+        <script src="{{ asset('assets/js/libs/blog-post.js') }}"></script>
+        <script src="{{ asset('assets/js/libs/bootstrap.js') }}"></script>
+        <script src="{{ asset('assets/js/libs/metisMenu.js') }}"></script>
+        <script src="{{ asset('assets/js/libs/sb-admin-2.js') }}"></script>
 
+        @yield('scripts')
     </body>
 </html>

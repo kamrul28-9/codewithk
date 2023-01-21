@@ -4,6 +4,7 @@
 
     <h1>Edit page</h1>
   <div class="row">
+        @include('includes.tinyeditor')
       <div class="col-sm-3">
           <img height="200" width="200" src="{{$post->photo ? $post->photo->file : 'http://place-hold.it/300'}}" class="img-resoposive img-rounded" alt="">
       </div>
